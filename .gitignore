@@ -1,6 +1,6 @@
 # This .gitignore file should be placed at the root of your Unity project directory
 #
-# Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
+# Get the latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 /[Ll]ibrary/
 /[Tt]emp/
@@ -69,3 +69,61 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Rider
+.idea/
+.idea/*
+.idea/workspace.xml
+.idea/libraries
+.idea/tasks.xml
+.idea/.idea/
+.idea/modules.xml
+.idea/.name
+.idea/.gitignore
+.idea/.gradle/
+/.idea/caches/
+/.idea/modules/
+/.idea/.idea/
+/.idea/encodings.xml
+.idea/misc.xml
+.idea/scopes/
+.idea/shelf/
+/.idea/libraries/
+/.idea/codeStyles/
+/.idea/inspectionProfiles/
+/.idea/vcs.xml
+.idea/workspace.xml
+.idea/gradle.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/checkstyle-idea.xml
+.idea/checkstyle-idea-dict.xml
+.idea/artifactLayouts.xml
+.idea/runConfigurations/
+
+# Rider Local History
+.idea/localHistory/
+
+# Rider shelf
+.idea/shelf/
+
+# Rider Gradle
+.idea/gradle.xml
+
+# Rider Encodings
+.idea/encodings.xml
+
+# Rider Workspace
+.idea/workspace.xml
+
+# Rider Tasks
+.idea/tasks.xml
+
+# Rider Code Styles
+.idea/codeStyles
+
+# Rider inspection Profiles
+.idea/inspectionProfiles/
+
+# Rider VCS
+.idea/vcs.xml
