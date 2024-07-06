@@ -8,7 +8,7 @@ public class NextActivePieceBoard : MonoBehaviour
 
     public TetrominoData[] tetrominoes;
     public Vector2Int boardSize = new Vector2Int(5, 5);
-    public Vector3Int nextPieceSpawnPosition = new Vector3Int(0, 0, 0);
+    public Vector3Int spawnPosition = new Vector3Int(-9, -1, 0);
 
     private void Awake()
     {
@@ -21,11 +21,11 @@ public class NextActivePieceBoard : MonoBehaviour
         }
     }
 
-    public void DisplayNextPiece()
+    public void CreateNextPiece()
     {
         int random = Random.Range(0, tetrominoes.Length);
         TetrominoData data = tetrominoes[random];
-        nextPiece.InitializeNextActivePiece(this, nextPieceSpawnPosition, data);
+        nextPiece.InitializeNextActivePiece(this, spawnPosition, data);
 
         tilemap.ClearAllTiles();
         Set(nextPiece);
