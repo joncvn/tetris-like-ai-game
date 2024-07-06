@@ -13,7 +13,6 @@ public class NextActivePieceBoard : MonoBehaviour
     private void Awake()
     {
         tilemap = GetComponentInChildren<Tilemap>();
-        nextPiece = GetComponentInChildren<Piece>();
 
         for (int i = 0; i < tetrominoes.Length; i++)
         {
@@ -23,6 +22,10 @@ public class NextActivePieceBoard : MonoBehaviour
 
     public void CreateNextPiece()
     {
+        if (nextPiece == null)
+        {
+            nextPiece = GetComponentInChildren<Piece>();
+        }
         int random = Random.Range(0, tetrominoes.Length);
         TetrominoData data = tetrominoes[random];
         nextPiece.InitializeNextActivePiece(this, spawnPosition, data);

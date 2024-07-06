@@ -42,19 +42,15 @@ public class Board : MonoBehaviour
     { 
         if (nextPieceBoard.nextPiece != null)
         {
-            int random = Random.Range(0, tetrominoes.Length);
-            TetrominoData data = tetrominoes[random];
-            activePiece.Initialize(this, spawnPosition, data);
-            Debug.Log("activePiece: " + nextPieceBoard); // Add this line for debugging
+            activePiece.Initialize(this, spawnPosition, nextPieceBoard.nextPiece.data);
         }
         else
         {
             int random = Random.Range(0, tetrominoes.Length);
             TetrominoData data = tetrominoes[random];
             activePiece.Initialize(this, spawnPosition, data);
-            Debug.Log("activePiece: " + nextPieceBoard); // Add this line for debugging
-
         }
+
         if (IsValidPosition(activePiece, spawnPosition))
         {
             Set(activePiece);
@@ -63,6 +59,7 @@ public class Board : MonoBehaviour
         {
             GameOver();
         }
+
         nextPieceBoard.CreateNextPiece();
     }
 
