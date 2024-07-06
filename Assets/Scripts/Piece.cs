@@ -3,6 +3,7 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     public Board board { get; private set; }
+    public NextActivePieceBoard napBoard { get; private set; }
     public TetrominoData data { get; private set; }
     public Vector3Int[] cells { get; private set; }
     public Vector3Int position { get; private set; }
@@ -32,6 +33,28 @@ public class Piece : MonoBehaviour
         }
 
         for (int i = 0; i < cells.Length; i++) {
+            cells[i] = (Vector3Int)data.cells[i];
+        }
+    }
+
+    public void InitializeNextActivePiece(NextActivePieceBoard board, Vector3Int position, TetrominoData data)
+    {
+        this.data = data;
+        this.napBoard = board;
+        this.position = position;
+
+        rotationIndex = 0;
+        stepTime = Time.time + stepDelay;
+        moveTime = Time.time + moveDelay;
+        lockTime = 0f;
+
+        if (cells == null)
+        {
+            cells = new Vector3Int[data.cells.Length];
+        }
+
+        for (int i = 0; i < cells.Length; i++)
+        {
             cells[i] = (Vector3Int)data.cells[i];
         }
     }

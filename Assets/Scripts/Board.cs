@@ -5,15 +5,12 @@ public class Board : MonoBehaviour
 {
     public Tilemap tilemap { get; private set; }
     public Piece activePiece { get; private set; }
-   /* public Tilemap nextPieceTilemap { get; private set; }*/
-   /* public Piece nextPiece { get; private set; }*/
-    public ScoreController scoreController; 
-
+    public ScoreController scoreController;
+    public NextActivePieceBoard nextPieceBoard; // Reference to the NextPieceBoard
 
     public TetrominoData[] tetrominoes;
     public Vector2Int boardSize = new Vector2Int(10, 20);
     public Vector3Int spawnPosition = new Vector3Int(-1, 8, 0);
-    /*public Vector3Int nextPiecePosition = new Vector3Int(6, 10, 0);*/
 
     public RectInt Bounds {
         get
@@ -28,11 +25,13 @@ public class Board : MonoBehaviour
         tilemap = GetComponentInChildren<Tilemap>();
         activePiece = GetComponentInChildren<Piece>();
 
-        /*nextPieceTilemap = transform.Find("NextPieceGrid/NextPieceTilemap").GetComponent<Tilemap>();
+        /*GameObject nextPieceBoardObject = GameObject.Find("NextPieceBoard");
+        if (nextPieceBoardObject != null)
+        {
+            nextPieceBoard = nextPieceBoardObject.GetComponent<NextPieceBoard>();
+            nextPieceBoard.tetrominoes = tetrominoes;
+        }*/
 
-        activePiece = GetComponentInChildren<Piece>();
-        nextPiece = CreateNextPiece();*/
-       
         for (int i = 0; i < tetrominoes.Length; i++) {
             tetrominoes[i].Initialize();
         }
@@ -41,49 +40,20 @@ public class Board : MonoBehaviour
     private void Start()
     {
         SpawnPiece();
+        nextPieceBoard.DisplayNextPiece();
     }
-
-    /*public Piece CreateNextPiece()
-    {
-        int random = Random.Range(0, tetrominoes.Length);
-        TetrominoData data = tetrominoes[random];
-        Piece piece = new GameObject("NextPiece").AddComponent<Piece>();
-        piece.Initialize(this, nextPiecePosition, data);
-
-        nextPieceTilemap.ClearAllTiles();
-        foreach (Vector3Int cell in piece.cells)
-        {
-            Vector3Int tilePosition = cell + nextPiecePosition;
-            nextPieceTilemap.SetTile(tilePosition, piece.data.tile);
-        }
-
-        return piece;
-    }*/
 
     public void SpawnPiece()
     {
-        /* if (nextPiece != null)
-         {
-             activePiece.Initialize(this, spawnPosition, nextPiece.data);
-             Destroy(nextPiece.gameObject);
-         }
-         else
-         {
-             int random = Random.Range(0, tetrominoes.Length);
-             TetrominoData data = tetrominoes[random];
-
-             activePiece.Initialize(this, spawnPosition, data);
-         }*/
         int random = Random.Range(0, tetrominoes.Length);
         TetrominoData data = tetrominoes[random];
         activePiece.Initialize(this, spawnPosition, data);
-
+      
         if (IsValidPosition(activePiece, spawnPosition)) {
             Set(activePiece);
         } else {
             GameOver();
         }
-       /* nextPiece = CreateNextPiece();*/
     }
 
     public void GameOver()
